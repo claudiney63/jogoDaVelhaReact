@@ -73,6 +73,92 @@ function App() {
     );
   };
 
+  const verificaVitoria = () => {
+    //Percorrer, linhas, colunas e diagonais, para verificar ganhador
+    //de X ou O
+
+    //Vitoria nas linhas
+    let pontos = 0
+    let vitoria = false
+
+    for(let l = 0; l < 3; l++) {
+      pontos = 0
+      for(let c = 0; c < 3; c++) {
+        if(jogo[l][c] === simboloAtual) {
+          pontos++ //se a somatoria de pontos for igual a 3, haverá vitoria
+        }
+      }
+
+      if(pontos >= 3) {
+        vitoria = true
+        break
+      }
+    }
+
+    //vitoria nas colunas
+    for(let c = 0; c < 3; c++) {
+      pontos = 0
+      for(let l = 0; l < 3; l++) {
+        if(jogo[l][c] === simboloAtual) {
+          pontos++
+        }
+      }
+
+      if(pontos >= 3) {
+        vitoria = true
+        break
+      }
+    }
+
+    //vitoria nas diagonais
+    for(let d = 0; d < 3; d++){
+      if(jogo[d][d]) {
+        if(jogo[l][c] === simboloAtual) {
+          pontos++
+        }
+      }
+    }
+
+    if(pontos >= 3) {
+      vitoria = true
+    }
+
+    pontos = 0
+
+    let l = 0
+    for(let c = 2; c >= 0; c--) {
+      if(jogo[l][c] === simboloAtual) {
+        pontos++
+      }
+      l++
+    }
+
+    if(pontos >= 3) {
+      vitoria = true
+    }
+
+    return vitoria
+  }
+
+  const trocaJogador = () => {
+    simboloAtual === 'X' ? setSimboloAtual('O') : setSimboloAtual('X')
+  }
+
+  const retornaPosicao = (e) => {
+    const p = e.target.getAttribute('data-pos')
+    const pos = [parseInt(p.subString(0, 1)), parseInt(p.subString(1, 2))]
+
+    return pos
+  }
+
+  const verificaEspacoVazio = (e) => {
+    if(jogo[retornaPosicao(e)[0]][retornaPosicao(e)[1]] === '') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   return <div>{tabuleiro}</div>;
 }
 
