@@ -73,11 +73,7 @@ function App() {
     );
   };
 
-  return (
-    <div>
-      {tabuleiro}
-    </div>
-  );
+  return <div>{tabuleiro}</div>;
 }
 
 export default App;
