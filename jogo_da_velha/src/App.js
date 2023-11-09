@@ -97,7 +97,7 @@ function App() {
 
       if (pontos >= 3) {
         vitoria = true;
-        break;
+        return vitoria
       }
     }
 
@@ -112,27 +112,27 @@ function App() {
 
       if (pontos >= 3) {
         vitoria = true;
-        break;
+        return vitoria
       }
     }
 
     //vitoria nas diagonais
+    pontos = 0
     for (let d = 0; d < 3; d++) {
-      pontos = 0
       if (jogo[d][d] === simboloAtual) {
         pontos++;
+        console.log(pontos)
       }
     }
 
     if (pontos >= 3) {
       vitoria = true;
+      return vitoria
     }
 
-    pontos = 0;
-
     let l = 0;
+    pontos = 0
     for (let c = 2; c >= 0; c--) {
-      pontos = 0
       if (jogo[l][c] === simboloAtual) {
         pontos++;
       }
@@ -141,6 +141,7 @@ function App() {
 
     if (pontos >= 3) {
       vitoria = true;
+      return vitoria
     }
 
     return vitoria
